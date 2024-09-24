@@ -39,8 +39,13 @@ const FormLogin = () => {
   });
 
   return (
-    <div className="bg-white shadow-md rounded-xl py-8 px-4 w-[400px]">
-      <h2 className="mb-8 font-semibold text-2xl">¡Bienvenido de vuelta!</h2>
+    <div className=" pb-8 px-4 w-[600px]">
+
+      <div className="flex flex-col mb-8 gap-2">
+        <h1 className="font-semibold text-4xl">¡Bienvenido de vuelta!</h1>
+        <p className="text-lg">Te estabamos esperando.</p>
+      </div>
+
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -88,7 +93,12 @@ const FormLogin = () => {
             <span className="text-red-500">{errors.password.message}</span>
           )}
         </div>
-        <Button type="submit">Ingresar</Button>
+        <button
+          className="w-full bg-green-sena transition-all hover:bg-green-sena-medium text-white font-semibold py-3 rounded-md"
+          type="submit"
+        >
+          Ingresar
+        </button>
       </form>
     </div>
   );
