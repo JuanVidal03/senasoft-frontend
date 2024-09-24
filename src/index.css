@@ -1,3 +1,5 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* hidde the scrollbar */
+::-webkit-scrollbar { width: 0px; }

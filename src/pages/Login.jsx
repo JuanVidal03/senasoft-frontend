@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import FormLogin from '../components/FormLogin.jsx';
 import senaLogo from "../assets/logoSena.png"
 
@@ -12,6 +13,7 @@ const Login = () => {
                     <img className='w-16 h-16' src={senaLogo} alt="Logo del SENA" />
                 </figure>
                 <FormLogin/>
+                <p>¿No tienes una cuenta? <Link className='font-semibold' to="/register">Registrame</Link></p>
             </div>
             <div className='w-[50vw] h-screen bg-auth-bg bg-cover bg-no-repeat'></div>
         </div>

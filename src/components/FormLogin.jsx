@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Button, Label, TextInput } from "flowbite-react";
+import { Label, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { login } from "../services/auth.services.js";
 import { AuthContext } from "../context/Auth.context.jsx";
@@ -39,7 +39,7 @@ const FormLogin = () => {
   });
 
   return (
-    <div className=" pb-8 px-4 w-[600px]">
+    <div className="pb-4 px-4 w-[600px]">
 
       <div className="flex flex-col mb-8 gap-2">
         <h1 className="font-semibold text-4xl">¡Bienvenido de vuelta!</h1>

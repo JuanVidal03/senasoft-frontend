@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { Button, Label, TextInput } from "flowbite-react";
+import { Label, TextInput, Select } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { register as registerService } from "../services/auth.services.js";
 
@@ -14,7 +14,13 @@ const FormRegister = () => {
   } = useForm();
 
   const handleRegister = handleSubmit(async (data) => {
+
+    // parsear el estrato de string a number
+    data.estrato = parseInt(data.estrato);
+    data.rol = "Usuario";
+
     try {
+      /*
       const registerResponse = await registerService(data);
 
       if (registerResponse.status === 400)
@@ -24,15 +30,22 @@ const FormRegister = () => {
         toast.success(registerResponse.data.message);
         navigate("/login");
         return reset();
-      }
+      }*/
+     console.log(data);
+
     } catch (error) {
       toast.error(error.message);
     }
   });
 
   return (
-    <div className="bg-white shadow-md rounded-xl py-8 px-4 w-[400px]">
-      <h2 className="mb-8 font-semibold text-2xl">¡Te estabamos esperando!</h2>
+    <div className="pb-4 px-4 w-[600px]">
+
+      <div className="flex flex-col mb-8 gap-2">
+        <h1 className="font-semibold text-4xl">¡Bienvenido!</h1>
+        <p className="text-lg">Registrate para empezar a pedalear.</p>
+      </div>
+
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -40,6 +53,7 @@ const FormRegister = () => {
         }}
         className="flex flex-col gap-4"
       >
+        {/* nombre completo */}
         <div>
           <div className="mb-2 block">
             <Label value="Nombre Completo*" />
@@ -58,7 +72,7 @@ const FormRegister = () => {
             <span className="text-red-500">{errors.nombre.message}</span>
           )}
         </div>
-
+        {/* email */}
         <div>
           <div className="mb-2 block">
             <Label value="Correo Eléctronico*" />
@@ -81,7 +95,7 @@ const FormRegister = () => {
             <span className="text-red-500">{errors.email.message}</span>
           )}
         </div>
-
+        {/* password */}
         <div>
           <div className="mb-2 block">
             <Label value="Contraseña*" />
@@ -100,7 +114,68 @@ const FormRegister = () => {
             <span className="text-red-500">{errors.password.message}</span>
           )}
         </div>
-        <Button type="submit">Registrarme</Button>
+        {/* estrato */}
+        <div>
+          <div className="mb-2 block">
+            <Label value="Estrato socio economico*" />
+          </div>
+          <TextInput
+            type="text"
+            placeholder="1 - 6"
+            {...register("estrato", {
+              required: {
+                value: true,
+                message: "Este campo es obligatorio.",
+              },
+              pattern: {
+                value: /^[0-9]+$/,
+                message: "En este campo solamente deben ir números."
+              },
+              min: {
+                value: 1,
+                message: 'El estrato minimo es 1.',
+              },
+              max: {
+                value: 6,
+                message: 'El estrato mayor es 6.',
+              },
+            })}
+          />
+          {errors.estrato && (
+            <span className="text-red-500">{errors.estrato.message}</span>
+          )}
+        </div>
+        {/* regional */}
+        <div>
+          <div className="mb-2 block">
+            <Label value="Selecciona tu regional*" />
+          </div>
+          <Select
+            {...register("regional", {
+              required: {
+                value: true,
+                message: "Este campo es obligatorio.",
+              },
+            })}
+          >
+            <option value="">Seleciona una regional</option>
+            <option>United States</option>
+            <option>Canada</option>
+            <option>France</option>
+            <option>Germany</option>
+          </Select>
+          
+          {errors.regional && (
+            <span className="text-red-500">{errors.regional.message}</span>
+          )}
+        </div>
+
+        <button
+          className="w-full bg-green-sena transition-all hover:bg-green-sena-medium text-white font-semibold py-3 rounded-md"
+          type="submit"
+        >
+          Registrarme
+        </button>
       </form>
     </div>
   );
