@@ -33,3 +33,14 @@ export const login = async(credentials) => {
         return error;
     }
 }
+
+export const logout = async() => {
+    try {
+        
+        const response = await axios.post("/logout");
+        return response;
+
+    } catch (error) {
+        return error.message;
+    }
+}
