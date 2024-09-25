@@ -1,12 +1,5 @@
-import {
-  HiArrowSmRight,
-  HiChartPie,
-  HiInbox,
-  HiShoppingBag,
-  HiTable,
-  HiUser,
-  HiViewBoards,
-} from "react-icons/hi";
+import { HiArrowSmRight } from "react-icons/hi";
+import { FaMapMarkedAlt } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
 const menuItems = [
@@ -19,31 +12,10 @@ const menuItems = [
     title: 'Bicicletas',
     path: '/bicicletas',
     icon: <HiChartPie className="text-3xl block" />
-  },
-  {
-    title: 'Inbox',
-    path: '/inbox',
-    icon: <HiInbox className="text-3xl block" />
-  },
-  {
-    title: 'Users',
-    path: '/users',
-    icon: <HiUser className="text-3xl block" />
-  },
-  {
-    title: 'Products',
-    path: '/products',
-    icon: <HiShoppingBag className="text-3xl block" />
-  },
-  {
-    title: 'SignIn',
-    path: '/signin',
-    icon: <HiTable className="text-3xl block" />
-  },
-  {
-    title: 'SignUp',
-    path: '/signup',
-    icon: <HiViewBoards className="text-3xl block" />
+  },{
+    title: 'Mapas',
+    path: '/mapas',
+    icon: <FaMapMarkedAlt className="text-3xl block" />
   }
 ]
 
