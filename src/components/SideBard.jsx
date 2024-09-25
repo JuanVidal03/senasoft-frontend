@@ -12,11 +12,12 @@ const menuItems = [
     title: 'Bicicletas',
     path: '/bicicletas',
     icon: <HiChartPie className="text-3xl block" />
-  },{
+  },
+  {
     title: 'Mapas',
     path: '/mapas',
     icon: <FaMapMarkedAlt className="text-3xl block" />
-  }
+  },
 ]
 
 export default function SideBard() {
