@@ -5,7 +5,8 @@ import CardBicicletas from '../components/CardBicicletas'
 
 
 const BicicletasDisponibles = () => {
-    const {user } = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
+  
   return (
     <DashBoardLayout>
         {user && (

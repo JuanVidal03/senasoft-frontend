@@ -1,4 +1,4 @@
-import { HiArrowSmRight, HiChartPie } from "react-icons/hi";
+import { HiArrowSmRight, HiChartPie, HiPencilAlt } from "react-icons/hi";
 import { FaMapMarkedAlt } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
@@ -12,6 +12,11 @@ const menuItems = [
     title: 'Bicicletas',
     path: '/bicicletas',
     icon: <HiChartPie className="text-3xl block" />
+  },
+  {
+    title: 'Mis Alquileres',
+    path: '/alquileres',
+    icon: <HiPencilAlt className="text-3xl block" />
   },
   {
     title: 'Mapas',

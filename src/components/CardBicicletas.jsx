@@ -32,7 +32,12 @@ const CardBicicletas = ({ bicicletas }) => {
                 <h1 className="text-xl">Precio Base:</h1>
                ${bicicleta.precioBase}
             </span>
+            {bicicleta.estado == 'Inactivo'? 
+            <Button className="bg-red-700" >Ya esta reservada</Button>  :
+            bicicleta.estado == 'Mantenimiento' ? 
+            <Button className="bg-orange-700">Bicicleta en mantenimiento</Button>:
           <ModalAlquilarBicicleta bicicleta={bicicleta}/>
+          }
           </Card>
         ))}
     </>

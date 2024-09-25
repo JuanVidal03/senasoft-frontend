@@ -5,6 +5,7 @@ import Mapa from "../pages/Mapa.jsx";
 import DashBoard from "../pages/DashBoard.jsx";
 import BicicletasDisponibles from "../pages/BicicletasDisponibles.jsx";
 import Register from "../pages/Register.jsx";
+import MisAlquileres from "../pages/MisAlquileres.jsx";
 
 const AllRoutes = () => {
     return (
@@ -17,6 +18,7 @@ const AllRoutes = () => {
                 <Route path="/" element={<DashBoard/>} />
                 <Route path="/bicicletas" element={<BicicletasDisponibles/>} />
                 <Route path="/mapas" element={<Mapa/>} />
+                <Route  path="/alquileres" element={<MisAlquileres/>}/>
             </Route>
         </Routes>
     );

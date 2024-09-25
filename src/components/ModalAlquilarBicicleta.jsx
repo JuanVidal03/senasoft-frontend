@@ -4,13 +4,13 @@ import { AuthContext } from '../context/Auth.context'
 import axios from "../services/axios";
 import { calcularTarifaTotal } from "../utils/calcularValorTotal";
 
-
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 export default function ModalAlquilarBicicleta({bicicleta}) {
     const {user } = useContext(AuthContext)
   const [openModal, setOpenModal] = useState();
   const [fechaInicio, setFechaInicio] = useState();
   const [fechaFin, setFechaFin] = useState();
-
   const alquilarBicicleta =async()=>{
     const valorTotal = calcularTarifaTotal(fechaInicio, fechaFin, bicicleta.precioBase)
     console.log(valorTotal)
@@ -24,19 +24,18 @@ export default function ModalAlquilarBicicleta({bicicleta}) {
         precioUso: bicicleta.precioBase
     }
     const response = await axios.post('/alquiler',alquiler);
-    console.log(response.data)
-    alert(response.data.message)
+    toast.success(response.data.message)
+    setOpenModal(false);
   }
   function onCloseModal() {
     setOpenModal(false);
-    setEmail("");
   }
   return (
     <>
       <Button onClick={() => setOpenModal(true)}>
         Alquilar
         <svg
-          className="-mr-1 ml-2 h-4 w-4 mt-1"
+          className="-mr-1 ml-2 h-4 w-4 mt-1 bg-green-700"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
