@@ -16,8 +16,8 @@ const menuItems = [
     icon: <HiArrowSmRight className="text-3xl block" />
   },
   {
-    title: 'Kanban',
-    path: '/test',
+    title: 'Bicicletas',
+    path: '/bicicletas',
     icon: <HiChartPie className="text-3xl block" />
   },
   {

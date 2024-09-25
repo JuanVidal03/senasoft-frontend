@@ -5,6 +5,7 @@ import Register from "../pages/Register.jsx";
 import SideBard from "../components/SideBard.jsx";
 import DashBoard from "../pages/DashBoard.jsx";
 import Test from "../pages/Test.jsx";
+import BicicletasDisponibles from "../pages/BicicletasDisponibles.jsx";
 
 const AllRoutes = () => {
     return (
@@ -15,7 +16,7 @@ const AllRoutes = () => {
             {/* private routes */}
             <Route element={<PrivateRoutes/>}>
                 <Route path="/" element={<DashBoard/>} />
-                <Route path="/test" element={<Test/>} />
+                <Route path="/bicicletas" element={<BicicletasDisponibles/>} />
 
             </Route>
         </Routes>

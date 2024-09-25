@@ -29,6 +29,7 @@ export const login = async(credentials) => {
         return response;
 
     } catch (error) {
+        console.log(error)
         return error;
     }
 }
