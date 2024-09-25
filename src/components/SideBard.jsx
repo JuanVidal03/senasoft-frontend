@@ -1,4 +1,6 @@
-import { HiArrowSmRight, HiChartPie } from "react-icons/hi";
+import { HiArrowSmRight } from "react-icons/hi";
+import { IoCalendar } from "react-icons/io5";
+import { LiaBicycleSolid } from "react-icons/lia";
 import { FaMapMarkedAlt } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
@@ -11,12 +13,17 @@ const menuItems = [
   {
     title: 'Bicicletas',
     path: '/bicicletas',
-    icon: <HiChartPie className="text-3xl block" />
+    icon: <LiaBicycleSolid className="text-3xl block" />
   },
   {
     title: 'Mapas',
     path: '/mapas',
     icon: <FaMapMarkedAlt className="text-3xl block" />
+  },
+  {
+    title: 'Eventos',
+    path: '/eventos',
+    icon: <IoCalendar className="text-3xl block" />
   },
 ]
 
@@ -30,7 +37,7 @@ export default function SideBard() {
               to={menuItem.path}
               key={menuItem.path}
               className={({ isActive }) =>
-                isActive ? "bg-slate-700 transition-all rounded-lg text-white py-1 px-1" : "hover:text-gray-500 px-1 py-1 transition-all"
+                isActive ? "bg-green-sena-hard transition-all rounded-lg text-white p-1" : "hover:bg-gray-200 p-1 transition-all rounded-lg"
               }
             >
               {

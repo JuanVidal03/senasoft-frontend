@@ -4,7 +4,7 @@ export const verifyToken = async() => {
     try {
         
         const response = await axios.get("/verify-token");
-        return response;
+        return response.data.user;
 
     } catch (error) {
         return error.message;

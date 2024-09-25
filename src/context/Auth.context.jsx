@@ -26,7 +26,7 @@ const AuthContextProvider = ({ children }) => {
 
                 const token = await verifyToken(cookies.token);
 
-                if(!token.data){
+                if(!token){
                     setIsAuthenticated(false);
                     setLoading(false);
                     return setUser(null);
@@ -34,7 +34,7 @@ const AuthContextProvider = ({ children }) => {
 
                 setLoading(false);
                 setIsAuthenticated(true);
-                return setUser(token.data);
+                return setUser(token);
                 
             } catch (error) {
                 setIsAuthenticated(false);

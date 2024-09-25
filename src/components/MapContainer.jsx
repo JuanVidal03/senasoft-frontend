@@ -32,7 +32,7 @@ const MapContainerComponent = () => {
 
 
     return (
-        <MapContainer className="w-full h-[90%] rounded-2xl shadow-xl" center={[user.user.regional.coordenadas.latitud, user.user.regional.coordenadas.longitud]} zoom={8} scrollWheelZoom={true}>
+        <MapContainer className="w-full h-[90%] rounded-2xl shadow-xl" center={[user.regional.coordenadas.latitud, user.regional.coordenadas.longitud]} zoom={8} scrollWheelZoom={true}>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
