@@ -1,4 +1,4 @@
-import { HiArrowSmRight } from "react-icons/hi";
+import { HiArrowSmRight, HiChartPie } from "react-icons/hi";
 import { FaMapMarkedAlt } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 
@@ -7,6 +7,11 @@ const menuItems = [
     title: 'DashBoard',
     path: '/',
     icon: <HiArrowSmRight className="text-3xl block" />
+  },
+  {
+    title: 'Bicicletas',
+    path: '/bicicletas',
+    icon: <HiChartPie className="text-3xl block" />
   },
   {
     title: 'Mapas',
