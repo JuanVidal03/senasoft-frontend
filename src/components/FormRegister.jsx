@@ -1,8 +1,11 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Label, TextInput, Select } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { register as registerService } from "../services/auth.services.js";
+import { getAllRegionales } from "../services/regional.services.js";
+import Loader from "../components/Loader.jsx";
 
 const FormRegister = () => {
   const navigate = useNavigate();
@@ -13,33 +16,57 @@ const FormRegister = () => {
     reset,
   } = useForm();
 
+  const [loading, setLoading] = useState(false);
+
+
+  // render all the regionales to the dropdown
+  const [regionales, setRegionales] = useState([]);
+  useEffect(() => {
+    setLoading(true);
+
+    const renderAllRegionales = async() => {
+
+      const regionales = await getAllRegionales();
+      setRegionales(regionales.data.data);
+      return setLoading(false);
+  
+    }
+    renderAllRegionales();
+  }, []);
+
+
   const handleRegister = handleSubmit(async (data) => {
+    setLoading(true);
 
     // parsear el estrato de string a number
     data.estrato = parseInt(data.estrato);
     data.rol = "Usuario";
 
     try {
-      /*
+      
       const registerResponse = await registerService(data);
 
-      if (registerResponse.status === 400)
-        return toast.error(registerResponse.response.data.message);
+      if (registerResponse.status === 400) {
+        toast.error(registerResponse.response.data.message);
+        return setLoading(false);
+      }
 
       if (registerResponse.status === 201) {
         toast.success(registerResponse.data.message);
         navigate("/login");
-        return reset();
-      }*/
-     console.log(data);
+        return setLoading(false);
+      }
 
     } catch (error) {
       toast.error(error.message);
+      setLoading(false);
     }
   });
 
   return (
     <div className="pb-4 px-4 w-[600px]">
+
+      { loading && <Loader/> }
 
       <div className="flex flex-col mb-8 gap-2">
         <h1 className="font-semibold text-4xl">¡Bienvenido!</h1>
@@ -61,15 +88,15 @@ const FormRegister = () => {
           <TextInput
             type="text"
             placeholder="Jhon Doe"
-            {...register("nombre", {
+            {...register("nombreCompleto", {
               required: {
                 value: true,
                 message: "Este campo es obligatorio.",
               },
             })}
           />
-          {errors.nombre && (
-            <span className="text-red-500">{errors.nombre.message}</span>
+          {errors.nombreCompleto && (
+            <span className="text-red-500">{errors.nombreCompleto.message}</span>
           )}
         </div>
         {/* email */}
@@ -159,10 +186,11 @@ const FormRegister = () => {
             })}
           >
             <option value="">Seleciona una regional</option>
-            <option>United States</option>
-            <option>Canada</option>
-            <option>France</option>
-            <option>Germany</option>
+            {
+              regionales?.map(regional => (
+                <option key={regional._id} value={regional._id}>{ regional.nombre }</option>
+              ))
+            }
           </Select>
           
           {errors.regional && (
