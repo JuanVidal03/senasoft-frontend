@@ -49,7 +49,7 @@ const menuItems = [
 
 export default function SideBard() {
   return (
-    <div className="flex flex-col h-screen p-4 bg-gray-100 w-[4.5rem] group hover:w-[15vw] transition-all">
+    <div className=" fixed z-10 flex flex-col h-screen p-4 bg-gray-100 w-[4.5rem] group hover:w-[15vw] transition-all">
       <div className="flex w-full flex-col space-y-4">
         {
           menuItems?.map(menuItem => (

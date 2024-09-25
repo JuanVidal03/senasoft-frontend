@@ -1,13 +1,15 @@
-import React from 'react'
-import SideBard from '../components/SideBard'
+import { useContext } from 'react';
+import SideBard from '../components/SideBard';
+
 export default function DashBoardLayout({children}) {
   return (
-    
-    <article className='flex gap-10'>
+    <div className='flex gap-10'>
       <SideBard/>
-      <section>
-        {children}
+      <section className='bg-red-500 fixed w-full h-screen flex justify-end'>
+        <div className='bg-gray-200 p-8' style={{ width: 'calc(100vw - 4.5rem)' }}>
+          {children}
+        </div>
       </section>
-    </article>
+    </div>
   )
 }
