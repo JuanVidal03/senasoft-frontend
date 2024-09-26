@@ -30,7 +30,10 @@ const FormLogin = () => {
       if (loginResponse.status === 200) {
         setUser(loginResponse.data.data.user);
         setIsAuthenticated(true);
-        navigate("/");
+        if(loginResponse.data.data.user.rol == 'Usuario'){
+          navigate('/bicicletas')
+        }else if (loginResponse.data.data.user.rol == 'Administrador')
+        navigate("/estestadisticas");
         return reset();
       }
     } catch (error) {

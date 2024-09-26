@@ -4,6 +4,7 @@ import { getAllEventos as getAllEventosService } from "../services/eventos.servi
 import EventosModal from "../components/EventosModal.jsx";
 import EventoCard from "../components/EventoCard.jsx";
 import { AuthContext } from "../context/Auth.context.jsx";
+import DashBoardLayoutAdmin from "../layouts/DashBoardLayoutAdmin.jsx";
 
 
 const Eventos = () => {
@@ -24,6 +25,8 @@ const Eventos = () => {
 
 
   return (
+    <>
+    {user.rol == 'Usuario' ?  
     <DashBoardLayout>
         <div className="mb-6">
             <h1 className="text-3xl font-semibold mb-8">Eventos</h1>
@@ -41,6 +44,26 @@ const Eventos = () => {
         ))}
       </section>
     </DashBoardLayout>
+    :
+    <DashBoardLayoutAdmin>
+    <div className="mb-6">
+        <h1 className="text-3xl font-semibold mb-8">Eventos</h1>
+        { user.rol === "Administrador" && <EventosModal /> }
+    </div>
+
+  <section className="grid grid-cols-4 gap-8">
+    {eventos?.map((evento) => (
+      
+      <EventoCard
+        key={evento._id}
+        evento={evento}
+      />
+
+    ))}
+  </section>
+</DashBoardLayoutAdmin>
+}
+    </>
   );
 };
 

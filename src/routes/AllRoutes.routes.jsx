@@ -19,12 +19,15 @@ const AllRoutes = () => {
             {/* private routes */}
             <Route element={<PrivateRoutes/>}>
                 <Route path="/" element={<DashBoard/>} />
+            {/*Routes administrador */}
+                <Route path="/estestadisticas" element={<DashBoard/>} />
                 <Route path="/mapas" element={<Mapa/>} />
-                <Route path="/eventos" element={<Eventos/>} />
-                <Route path="/bicicletas" element={<BicicletasDisponibles/>} />
-                <Route path="/mapas" element={<Mapa/>} />
-                <Route  path="/alquileres" element={<MisAlquileres/>}/>
                 <Route  path="/alquileres-pendientes" element={<AlquileresPendientes/>}/>
+                <Route path="/eventosadmin" element={<Eventos/>} />
+             {/*Routes usuario */}    
+                <Route path="/bicicletas" element={<BicicletasDisponibles/>} />
+                <Route path="/alquileres" element={<MisAlquileres/>}/>
+                <Route path="/eventosusuario" element={<Eventos/>} />
             </Route>
         </Routes>
     );

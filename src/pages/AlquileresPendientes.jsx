@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
-import DashBoardLayout from '../layouts/DashBoardLayout'
 import { Table , Button} from "flowbite-react";
 import { getAllAlquileresPendientes } from '../services/alquileresPendientes';
 import { useState } from 'react';
 import axios from 'axios';
+import DashBoardLayoutAdmin from '../layouts/DashBoardLayoutAdmin';
 export default function AlquileresPendientes() {
     const [alquileres, setAlquileres] = useState();
     const [cambio, setCambio] = useState(false)
@@ -25,7 +25,7 @@ export default function AlquileresPendientes() {
     }
 
   return (
-    <DashBoardLayout>
+    <DashBoardLayoutAdmin>
         <div className="overflow-x-auto">
       <Table hoverable>
         <Table.Head>
@@ -61,6 +61,6 @@ export default function AlquileresPendientes() {
         </Table.Body>
       </Table>
     </div>
-    </DashBoardLayout>
+    </DashBoardLayoutAdmin>
   )
 }

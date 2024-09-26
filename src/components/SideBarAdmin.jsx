@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
-import { LiaBicycleSolid } from "react-icons/lia";
-import { HiPencilAlt } from "react-icons/hi";
+import { FaMapMarkedAlt } from "react-icons/fa";
+import { HiClock } from "react-icons/hi";
 import { Link, NavLink } from "react-router-dom";
 import { IoCalendar, IoLogOut } from "react-icons/io5";
 import logoSena from "../assets/logoSena.png";
@@ -12,23 +12,23 @@ import Loader from "./Loader";
 
 const menuItems = [
   {
-    title: 'Bicicletas',
-    path: '/bicicletas',
-    icon: <LiaBicycleSolid className="text-3xl block" />
+    title: 'Mapas',
+    path: '/mapas',
+    icon: <FaMapMarkedAlt className="text-3xl block" />
   },
-   {
-     title: 'Mis Alquileres',
-     path: '/alquileres',
-     icon: <HiPencilAlt className="text-3xl block" />
+  {
+    title: 'Alquileres Pendientes',
+    path: '/alquileres-pendientes',
+    icon: <HiClock className="text-3xl block" />
   },
   {
     title: 'Eventos',
-    path: '/eventosusuario',
+    path: '/eventosadmin',
     icon: <IoCalendar className="text-3xl block" />
   },
 ]
 
-export default function SideBard() {
+export default function SideBarAdmin() {
 
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
