@@ -3,20 +3,22 @@ import { Button, Modal, Label, TextInput } from "flowbite-react";
 import { HiUserAdd } from "react-icons/hi";
 import { AuthContext } from "../context/Auth.context";
 import axios from "axios";
+
 export const ModalInvitacion = () => {
-  const [openModal, setOpenModal] = useState(true);
+
+  const [openModal, setOpenModal] = useState(false);
   const [email, setEmail] = useState();
   const { user } = useContext(AuthContext);
   const enviarInvitacion = async () => {
     const response = await axios.post(
-      "http://localhost:8080/api/enviarcorreo",
+      `${import.meta.env.VITE_BACKEND_URL}/enviarcorreo`,
       {
         email,
         idUser: user._id,
       }
     );
     console.log(response.data);
-    alert(response.data);
+    alert(response.data.msg)
   };
   return (
     <>

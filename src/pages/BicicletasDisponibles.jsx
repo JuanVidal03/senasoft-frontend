@@ -3,6 +3,8 @@ import DashBoardLayout from '../layouts/DashBoardLayout'
 import { AuthContext } from '../context/Auth.context'
 import CardBicicletas from '../components/CardBicicletas'
 import { ModalInvitacion } from '../components/Modalnvitation'
+import { Button } from 'flowbite-react'
+import MisPuntos from '../components/MisPuntos'
 
 
 const BicicletasDisponibles = () => {
@@ -14,6 +16,7 @@ const BicicletasDisponibles = () => {
 
       <section>
         <nav className='flex justify-end'>
+          <MisPuntos/>
           <ModalInvitacion/>
         </nav>
 
