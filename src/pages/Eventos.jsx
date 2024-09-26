@@ -22,12 +22,12 @@ const Eventos = () => {
     getAllEventos();
   }, []);
 
+
   return (
     <DashBoardLayout>
         <div className="mb-6">
             <h1 className="text-3xl font-semibold mb-8">Eventos</h1>
-
-            <EventosModal />
+            { user.rol === "Administrador" && <EventosModal /> }
         </div>
 
       <section className="grid grid-cols-4 gap-8">

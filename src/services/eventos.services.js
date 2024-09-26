@@ -21,3 +21,14 @@ export const createEvento = async(evento) => {
         return error;
     }
 }
+
+export const addUserToEvento = async(id, idUser) => {
+    try {
+        
+        const response = await axios.patch(`/evento/${id}`, idUser);
+        return response;
+
+    } catch (error) {
+        return error;
+    }
+}

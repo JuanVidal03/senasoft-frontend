@@ -17,7 +17,9 @@ export default function MisAlquileres() {
     },[])
   return (
     <DashBoardLayout>
+      <div className='flex flex-wrap gap-8'>
         <CardMisAlquileres alquileres={alquileres} />
+      </div>
     </DashBoardLayout>
   )
 }

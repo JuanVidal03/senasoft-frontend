@@ -1,18 +1,28 @@
 import React, { useEffect } from 'react'
 import DashBoardLayout from '../layouts/DashBoardLayout'
-
 import { Table , Button} from "flowbite-react";
 import { getAllAlquileresPendientes } from '../services/alquileresPendientes';
 import { useState } from 'react';
+import axios from 'axios';
 export default function AlquileresPendientes() {
     const [alquileres, setAlquileres] = useState();
+    const [cambio, setCambio] = useState(false)
     useEffect(()=>{
         const getAlquileresPendiente =async()=>{
             const response = await getAllAlquileresPendientes()
             setAlquileres(response.data.data)
         }
         getAlquileresPendiente()
-    },[])
+    },[cambio])
+
+
+    const cambiarEstadoBicicleta =async(id, idAlquiler)=>{
+      
+      const response = await axios.patch( `${import.meta.env.VITE_BACKEND_URL}/bicicletaPatch/${id}`, { estado:  "Activo"});
+      const alquiler = await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/alquilerpatch/${idAlquiler}` )
+      setCambio(!cambio)
+
+    }
 
   return (
     <DashBoardLayout>
@@ -34,13 +44,13 @@ export default function AlquileresPendientes() {
             </Table.Cell>
             <Table.Cell>{alquiler.bicicleta.marca}</Table.Cell>
             <Table.Cell>{alquiler.valorTotal}</Table.Cell>
-            {alquiler.estado ?    
+            {alquiler.estado  ?    
             <Table.Cell><label htmlFor='check' className='text-green-700 font-semibold text-lg'> Pagado</label> </Table.Cell>
             :
             <Table.Cell>
                 <div className='flex gap-4'>
                 <label htmlFor='check' className='text-red-700  font-semibold text-lg'>No Pagado</label>
-                <Button id='check'>Pagar</Button>
+                <Button onClick={()=> cambiarEstadoBicicleta(alquiler.bicicleta._id, alquiler._id)} id='check'>Pagar</Button>
                 </div>
                  </Table.Cell>
         }

@@ -5,18 +5,6 @@ import Swal from 'sweetalert2'
 
 export default function CardMisAlquileres({ alquileres }) {
 
-  const pagarAlquiler =()=>{
-    Swal.fire({
-      title: "Deseas pagar ahora",
-      showDenyButton: true,
-      confirmButtonText: "Si, estoy seguro",
-      denyButtonText: `No lo estoy`
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Se ha enviado una notificacion al correo del administrador de centro!", "", "success");
-      }
-    });
-  }
   return (
     <>
       {alquileres &&
@@ -47,11 +35,9 @@ export default function CardMisAlquileres({ alquileres }) {
             <span className="text-3xl font-mono text-gray-900 flex gap-4 items-center dark:text-white">
               <h1 className="text-xl">Valor total:</h1>${alquiler.valorTotal}
             </span>
-            {alquiler.estado === false ? (
-              <Button className="bg-red-700" onClick={()=>pagarAlquiler()}>Pagar</Button>
-            ) : (
-              <Button>Ya esta pago</Button>
-            )}
+            {alquiler.estado === false && (
+              <h1 className="text-red-700 drop-shadow-lg">Tienes una reserva por pagar</h1>
+            ) }
           </Card>
         ))}
     </>

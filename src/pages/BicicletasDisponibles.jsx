@@ -9,9 +9,11 @@ const BicicletasDisponibles = () => {
   
   return (
     <DashBoardLayout>
+      <div className='flex flex-wrap gap-10 justify-around'>
         {user && (
         <CardBicicletas bicicletas={user.regional.bicicletas} /> 
         )}
+      </div>
     </DashBoardLayout>
   )
 }

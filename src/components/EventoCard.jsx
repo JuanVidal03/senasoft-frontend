@@ -1,7 +1,13 @@
+import { useContext } from "react";
 import { Card, Button } from "flowbite-react";
 import { format } from "date-fns";
+import { AuthContext } from "../context/Auth.context";
+import { addUserToEvento as addUserToEventoService } from "../services/eventos.services";
+import { toast } from "react-toastify";
 
 const EventoCard = ({ evento }) => {
+
+  const { user } = useContext(AuthContext);
   
   // format evento date
   const formatDate = (dateToFormat) => {
@@ -9,6 +15,21 @@ const EventoCard = ({ evento }) => {
     const dateFormated = format(date, "dd/MM/yyyy HH:mm");
     return dateFormated;
   };
+
+  // add user to an event
+  const addUserToEvento = async(id) => {
+    try {
+
+      const response = await addUserToEventoService(id, { idUser: user._id });
+
+      if(response.status === 200) return toast.success("Fuiste agregado correctamente!");
+      return toast.error("Hubo un error al registrarte, intentalo de nuevo.")
+      
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   return (
     <Card className="max-w-sm py-4 flex flex-col items-between justify-center transition-all hover:shadow-xl">
@@ -34,7 +55,9 @@ const EventoCard = ({ evento }) => {
           </p>
         </div>
 
-        <Button size="lg" className="uppercase">¡Asistir!</Button>
+        <Button onClick={ (e) => {
+          addUserToEvento(evento._id);
+        }} size="lg" className="uppercase">¡Asistir!</Button>
       </div>
 
 

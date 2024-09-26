@@ -9,7 +9,7 @@ const Mapa = () => {
   return (
     <DashBoardLayout>
       <h1 className="text-3xl font-semibold mb-8">
-        Ubicación de las bicicletas disponibles
+        Ubicación de las bicicletas alquiladas
       </h1>
       <MapContainerComponent/>
     </DashBoardLayout>

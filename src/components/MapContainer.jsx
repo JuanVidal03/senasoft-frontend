@@ -5,10 +5,13 @@ import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { AuthContext } from '../context/Auth.context.jsx';
 import { getAllRegionales } from '../services/regional.services.js';
+import { getAllAlquileresPendientes } from '../services/alquileresPendientes.js';
+import { Link } from 'react-router-dom';
 
 const MapContainerComponent = () => {
 
     const [regionales, setRegionales] = useState([]);
+    const [alquileres, setAlquileres] = useState([]);
     
     const { user } = useContext(AuthContext);
 
@@ -18,7 +21,10 @@ const MapContainerComponent = () => {
         const renderAllRegionales = async() => {
     
           const regionales = await getAllRegionales();
-          setRegionales(regionales.data.data);
+          const alquileres = await getAllAlquileresPendientes();
+            console.log(alquileres.data.data);
+          setAlquileres(alquileres.data.data);
+            setRegionales(regionales.data.data);
       
         }
         renderAllRegionales();
@@ -27,7 +33,12 @@ const MapContainerComponent = () => {
       // set a custom icon
       const customIcon = new Icon({
         iconUrl: "https://cdn-icons-png.flaticon.com/512/5695/5695326.png",
-        iconSize: [50, 50]
+        iconSize: [60, 60]
+      });
+
+      const customIconHouse = new Icon({
+        iconUrl: "https://sena.edu.co/Style%20Library/alayout/images/logoSena.png",
+        iconSize: [70, 70]
       });
 
 
@@ -47,14 +58,37 @@ const MapContainerComponent = () => {
                                 [ parseFloat(regional.coordenadas.latitud),
                                 parseFloat(regional.coordenadas.longitud) ]
                             }
-                            icon={customIcon}
+                            icon={customIconHouse}
                         >
-                            <Popup>
-                                <h2 className="text-base">{ regional.nombre } <br /> Bicicletas disponibles: { regional.bicicletas.length } </h2>
-                            </Popup>
+                            <Link className='cursor-pointer' to="/alquileres-pendientes">
+                                <Popup>
+                                    <h2 className="text-base">{ regional.nombre } <br /> Bicicletas alquiladas: { regional.bicicletas.length } </h2>
+                                </Popup>
+                            </Link>
                         </Marker>
                     ))
                 }
+
+                {
+                    alquileres?.map(alquiler => {
+                        if(alquiler.destino) {
+
+                            return alquiler.bicicleta.estado == "Inactivo" && (
+                                <Marker
+                                    key={alquiler._id}
+                                    position={
+                                        [ parseFloat(alquiler.destino.latitud),
+                                        parseFloat(alquiler.destino.longitud) ]
+                                    }
+                                    icon={customIcon}
+                                >
+                                </Marker>
+                            )
+                        }
+
+                    })
+                }
+
             </MarkerClusterGroup>
 
         </MapContainer>

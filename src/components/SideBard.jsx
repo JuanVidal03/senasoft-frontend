@@ -76,18 +76,18 @@ export default function SideBard() {
 
 
   return (
-    <div className=" fixed z-10 flex flex-col h-screen p-4 bg-gray-100 w-[4.5rem] group hover:w-[15vw] hover:shadow-lg transition-all">
-      <div className="flex w-full flex-col space-y-4">
+    <div className=" fixed z-10 flex flex-col h-screen p-4 bg-gray-100 w-[5rem] group hover:w-[18vw] hover:shadow-lg transition-all">
+      <div className="flex w-full flex-col space-y-4 justify-center">
 
         <Link
           to="/"
-          className="transition-all rounded-lg text-green-sena p-1" 
+          className="transition-all text-green-sena rounded-lg  p-1" 
         >
           <div className="flex items-center gap-3">
             <figure className="block w-[2rem] h-[2rem]">
               <img className="w-full h-full" src={logoSena} alt="logo del SENA" />
             </figure>
-            <span className="transition-all text-nowrap hidden font-bold group-hover:block">SENA</span>
+            <span className="transition-all text-nowrap font-bold hidden group-hover:block">SENA</span>
           </div>
         </Link>
 
@@ -98,7 +98,7 @@ export default function SideBard() {
               to={menuItem.path}
               key={menuItem.path}
               className={({ isActive }) =>
-                isActive ? "bg-green-sena-hard transition-all rounded-lg text-white p-1" : "hover:bg-gray-200 p-1 transition-all rounded-lg"
+                isActive ? "bg-green-sena-hard transition-all rounded-lg text-white p-2" : "hover:bg-gray-200 p-2 transition-all rounded-lg"
               }
             >
               {
@@ -113,7 +113,7 @@ export default function SideBard() {
           ))
         }
         { loading && <Loader/> }
-        <button onClick={handleLogout} className="bg-red-700 transition-all rounded-lg text-white p-1 hover:bg-red-800">
+        <button onClick={handleLogout} className="bg-red-700 transition-all rounded-lg text-white p-2 hover:bg-red-800">
           <div className="flex items-center gap-3">
             <div className="block">
               <IoLogOut className="text-3xl block"/>
